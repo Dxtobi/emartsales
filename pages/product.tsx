@@ -11,14 +11,14 @@ import Carousel from "nuka-carousel";
 import { JSXElementConstructor, Key, ReactElement, ReactFragment, ReactPortal } from "react";
 
 
-export default function Product(params:{product:any, products:any}) {
+export default function Product(params:{product:any, products:any, session:any}) {
  
 
-    const { product, products } = params
+    const { product, products,session } = params
     
     
     const onSubmitForm = async (productId: any) => {
-        
+        vibrate()
         try {
            
             //console.log(values);
@@ -64,6 +64,9 @@ export default function Product(params:{product:any, products:any}) {
         window.navigator.vibrate(100);
     }
    // const phone = product?.seller_contact.trim()
+    if (!session) {
+        return <div>Your are loged out</div>
+    }
     return (
         <div className="w-full  ">
             <div>
@@ -84,7 +87,7 @@ export default function Product(params:{product:any, products:any}) {
             //autoplayInterval={50}
             >
             {
-                product.images.map((e: any, index: Key | null | undefined) => (
+                product?.images.map((e: any, index: Key | null | undefined) => (
                     <img src={e} key={index} />
                 ))
             }

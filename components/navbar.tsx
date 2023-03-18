@@ -3,8 +3,13 @@ import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { AiOutlineSearch } from 'react-icons/ai';
+import { AiOutlineLogout, AiOutlineSearch } from 'react-icons/ai';
+import {
 
+
+  signOut,
+
+} from "next-auth/react";
 export default function Navbar(params: { [x: string]: any; }) {
   const { session, ...others } = params
   const [userName, setUser] = useState('E-mart')
@@ -28,11 +33,18 @@ export default function Navbar(params: { [x: string]: any; }) {
             <div className='z-50 flex items-center justify-between p-5 fixed top-0 right-0 w-full box-shadow  header_div bg-[#33c336d5]'>
                 <Link href='/' className='brand text-green-900'>
                     <span className='text-white'>E</span>-Mart<span className='text-white'>.io</span>
-                </Link>
-                <Link href='/search'>
-                  <AiOutlineSearch size={25}/>
-                </Link>
-            </div>
+          </Link>
+          {
+            others.profile?.session &&(<button onClick={()=>signOut()}>
+                                              <div>
+                                                <AiOutlineLogout size={25}/>
+                                              </div>
+                                            </button>
+            )
+            
+          }
+          </div>
+                
       </>
     )
   }

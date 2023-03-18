@@ -2,7 +2,6 @@ import { PrismaClient } from '@prisma/client';
 
 import {
 
-  signIn,
 
   signOut,
 
@@ -100,7 +99,7 @@ const getMoreTab = async (values: any) => {
     }
 }
   
-
+console.log(params)
 
   const cancel = () => {
     setAuth(!auth)
@@ -161,7 +160,6 @@ const getMoreTab = async (values: any) => {
         loading &&(<div className=' flex justify-center items-center w-full h-[100vh] fixed header_div z-50 text-yellow-50 bg-[#000000b1]'>
                       <div>
                         <BiLoader size={30} />
-                        
                       </div>
                     </div>
                       )
