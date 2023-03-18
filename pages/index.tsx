@@ -155,7 +155,7 @@ const getMoreTab = async (values: any) => {
         </>
       )}
       {
-        prod.length > 9 && <button onClick={getMore} className=' bg-green-600 text-white rounded-lg w-full md:w-1/2 p-4'>Load More</button>
+        prod?.length > 9 && <button onClick={getMore} className=' bg-green-600 text-white rounded-lg w-full md:w-1/2 p-4'>Load More</button>
       }
       {
         loading &&(<div className=' flex justify-center items-center w-full h-[100vh] fixed header_div z-50 text-yellow-50 bg-[#000000b1]'>
