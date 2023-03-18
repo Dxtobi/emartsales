@@ -35,6 +35,8 @@ export default function Product(params:{product:any, products:any}) {
 
             if (res.status === 200) {
                 console.log(res.data)
+                window.alert('added to favorite')
+                vibrate()
                 //router.reload()
             } else {
                 
@@ -46,6 +48,21 @@ export default function Product(params:{product:any, products:any}) {
     }
    
 
+    function vibrate() {
+        if (!window) {
+            return;
+        }
+    
+        if (!window.navigator) {
+            return;
+        }
+    
+        if (!window.navigator.vibrate) {
+            return;
+        }
+    
+        window.navigator.vibrate(100);
+    }
    // const phone = product?.seller_contact.trim()
     return (
         <div className="w-full  ">
@@ -78,7 +95,7 @@ export default function Product(params:{product:any, products:any}) {
                 <div className="font-semibold text-lg">NGN {product.product_price }</div>
                 <div>{product.product_description }</div>
                 <div className="flex items-center gap-2 my-5">
-                    <button className=" bg-[#33c336d5] rounded-xl w-[60%] p-2 text-white " onClick={()=>onSubmitForm(product.id)}>Make Payment </button>
+                    <button className=" bg-[#33c336d5] rounded-xl w-[60%] p-2 text-white " onClick={()=>onSubmitForm(product.id)}>Add to favorite </button>
                     <div className=" w-[50px] h-[50px] rounded-full bg-[#33c336d5] flex justify-center items-center">
                     <Link  href={`https://wa.me/${product?.seller_contact.replace(/\s/g,'')}`} ><AiOutlineWhatsApp size={30} color='white'/></Link>
                     </div>
