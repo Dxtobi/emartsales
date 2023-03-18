@@ -175,18 +175,21 @@ const getMoreTab = async (values: any) => {
 
 export async function getServerSideProps(context: any) {
   const prisma = new PrismaClient();
+  const products = await prisma.product.findMany({ take: 40 });
+  const tags = await prisma.tag.findMany({ take:10 });
   const session = await getSession(context);
   if (!session) {
     return {
       props: {
-        session: null
+        session: null,
+        products,
+        tags
       }, 
     }
   }
   const sessionUser = session?.user as User;
  
-  const products = await prisma.product.findMany({ take: 40 });
-  const tags = await prisma.tag.findMany({ take:10 });
+ 
   //console.log('session:::', session);
   return {
     props: {
