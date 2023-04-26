@@ -9,6 +9,7 @@ import { PrismaClient } from "@prisma/client";
 import { getSession } from "next-auth/react";
 import Carousel from "nuka-carousel";
 import { JSXElementConstructor, Key, ReactElement, ReactFragment, ReactPortal } from "react";
+import client from "../lib/prismadb";
 
 
 export default function Product(params:{product:any, products:any, session:any}) {
@@ -134,7 +135,7 @@ export default function Product(params:{product:any, products:any, session:any})
 
 
 export async function getServerSideProps(context: any) {
-    const prisma = new PrismaClient();
+    const prisma = client
     const session = await getSession(context);
     if (!session) {
       return {

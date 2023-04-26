@@ -7,6 +7,7 @@ import { PrismaClient } from '@prisma/client';
 import { AiFillHeart } from "react-icons/ai";
 import { getSession } from "next-auth/react";
 import { ReactElement, JSXElementConstructor, ReactFragment, ReactPortal, Key } from "react";
+import client from "../lib/prismadb";
 
 
 
@@ -53,7 +54,7 @@ export default function Profile(params: { products: any; idType: number; session
 export async function getServerSideProps(context: any) {
 
 
-    const prisma = new PrismaClient();
+    const prisma = client;
     //console.log(context.query.id);
     const session = await getSession(context);
   if (!session) {

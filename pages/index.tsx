@@ -21,6 +21,7 @@ import Link from 'next/link';
 import { AiOutlineWhatsApp } from 'react-icons/ai';
 import CarouselElement from '../components/carosel/CaroselElelement';
 import axios, { AxiosRequestConfig } from 'axios';
+import client from '../lib/prismadb';
 const np=['Accessories','Perfumes','Fashion','Phones','Electronics', 'Footwears']
 
 
@@ -172,7 +173,7 @@ console.log(params)
 
 
 export async function getServerSideProps(context: any) {
-  const prisma = new PrismaClient();
+  const prisma = client
   const products = await prisma.product.findMany({ take: 40 });
   const tags = await prisma.tag.findMany({ take:10 });
   const session = await getSession(context);

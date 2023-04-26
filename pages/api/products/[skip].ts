@@ -1,9 +1,10 @@
 import { PrismaClient } from '@prisma/client';
 import { getSession } from 'next-auth/react';
 import { NextApiRequest, NextApiResponse } from 'next/types';
+import client from '../../../lib/prismadb';
 
 
-const prisma = new PrismaClient()
+const prisma = client
 
 export default async function (req:NextApiRequest, res:NextApiResponse) {
     try {
