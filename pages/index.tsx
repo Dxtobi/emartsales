@@ -165,7 +165,7 @@ export async function getServerSideProps(context: any) {
       },
     }
   } catch (error) {
-    console.log(error.message)
+   // console.log(error.message)
     return {
       props: {
         session:null,
