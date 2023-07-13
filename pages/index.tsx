@@ -163,7 +163,9 @@ const getMoreTab = async (values: any) => {
                       )
         
       }
-    </div>
+      {/* <!-- Google tag (gtag.js) --> */}
+      
+      </div>
   )
 }
 
