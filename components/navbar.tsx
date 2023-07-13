@@ -30,9 +30,9 @@ export default function Navbar(params: { [x: string]: any; }) {
               <link rel="icon" href="/favicon.ico" />
             </Head>
             
-            <div className='z-50 flex items-center justify-between p-5 fixed top-0 right-0 w-full box-shadow  header_div bg-[#33c336d5]'>
-                <Link href='/' className='brand text-green-900'>
-                    <span className='text-white'>E</span>-Mart<span className='text-white'>.io</span>
+            <div className='z-50 flex items-center justify-between p-5 absolute top-0 right-0 w-full   header_div bg-[#ffffff00]'>
+                <Link href='/' className='brand '>
+                    <span className='custom-text'>WeSales</span>
           </Link>
           {
             others.profile?.session &&(<button onClick={()=>signOut()}>

@@ -18,10 +18,10 @@ export default function PostContainer(params: { data: any; }) {
 
     //console.log("data::", data)
     return (
-        <div className={`w-full bg-white  mb-3 rounded-lg`}>
+        <div className={`w-full bg-[#ffffff17]  mb-3 rounded-lg relative `}>
             
             <Link href={{ pathname: '/product', query:{id:data.id} }} >
-                <img src={data.images[0]} alt='' width={100} height={200} className=" w-full rounded-lg" />
+                <img src={data.images[0]} alt='' width={100} height={200} className=" w-full rounded-lg object-cover h-[250px]" />
                 <div className=" p-2">
                     <div className=" font-bold">{data.product_name}</div>
                     <div className=" text-green-800 font-semibold">NGN{ data.product_price}</div>

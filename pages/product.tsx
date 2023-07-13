@@ -65,11 +65,9 @@ export default function Product(params:{product:any, products:any, session:any})
         window.navigator.vibrate(100);
     }
    // const phone = product?.seller_contact.trim()
-    if (!session) {
-        return <div>Your are loged out</div>
-    }
+   
     return (
-        <div className="w-full  ">
+        <div className="w-full  p-3 py-20">
             <div>
             <Carousel
             renderCenterLeftControls={({ previousDisabled, previousSlide }) => (

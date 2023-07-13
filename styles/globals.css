@@ -1,11 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Lobster&family=Montserrat:wght@100;300;400&family=Play:wght@700&family=Press+Start+2P&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 
-body{
-    background: #f1f5f9;
+
+/* font-family: 'Abril Fatface', cursive;
+font-family: 'Lobster', cursive;
+font-family: 'Montserrat', sans-serif;
+font-family: 'Play', sans-serif;
+font-family: 'Press Start 2P', cursive; */
+.custom-text {
+    background: linear-gradient(45deg, #a3a2a2, #636363);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+    font-family: 'Play', sans-serif;
 }
+*{
+    font-family: 'Montserrat', sans-serif;
+    outline: none;
+}
+body {
+    @apply dark:bg-[#060708] bg-white dark:text-white text-black ;
+
+  }
+
+  .backdrop-blur-custom{
+    @apply text-white dark:text-black ;
+    backdrop-filter: blur(10px);
+  }
 
 .box-shadow {
     box-shadow: 0px 10px 20px -5px #46e6ff2f;
@@ -27,4 +52,21 @@ body{
 .border-custom{
    
         border: 3px solid #581c87;
+    }
+    #theme-toggle {
+        @apply invisible;
+    }
+
+    #theme-toggle + label {
+        @apply inline-block cursor-pointer h-[30px] w-[30px]  rounded-full duration-300 content-[''];
+    }
+
+    #theme-toggle:not(:checked) + label {
+        @apply bg-amber-500;
+        box-shadow: inset 10px 12px 1px 1px #ffffff;
+    }
+
+    #theme-toggle:checked + label {
+        @apply bg-transparent;
+        box-shadow: inset -10px -12px 1px 1px #262626;
     }
