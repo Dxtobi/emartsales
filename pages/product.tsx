@@ -10,6 +10,7 @@ import { getSession } from "next-auth/react";
 import Carousel from "nuka-carousel";
 import { JSXElementConstructor, Key, ReactElement, ReactFragment, ReactPortal } from "react";
 import client from "../lib/prismadb";
+import PostContainer from "../components/home/PostContainer";
 
 
 export default function Product(params:{product:any, products:any, session:any}) {
@@ -47,7 +48,9 @@ export default function Product(params:{product:any, products:any, session:any})
             console.log(error)
         }
     }
-   
+   if( product===null || !product) {
+    return <div>Product not found</div>
+   }
 
     function vibrate() {
         if (!window) {
@@ -67,9 +70,8 @@ export default function Product(params:{product:any, products:any, session:any})
    // const phone = product?.seller_contact.trim()
    
     return (
-        <div className="w-full  p-3 py-20">
-            <div>
-            <Carousel
+        <div className="w-full   py-20">
+             <Carousel
             renderCenterLeftControls={({ previousDisabled, previousSlide }) => (
                 <button className='w-[100px] h-[300px]' onClick={previousSlide} disabled={previousDisabled}>
                 
@@ -91,40 +93,28 @@ export default function Product(params:{product:any, products:any, session:any})
                 ))
             }
             </Carousel>
-               
-
-                <div className=" uppercase font-bold mt-3 text-lg">{product.product_name}</div>
-                <div className="font-semibold text-lg">NGN {product.product_price }</div>
-                <div>{product.product_description }</div>
+            <div className="p-3">
+                <div className=" uppercase font-bold mt-3 text-lg">{product?.product_name}</div>
+                <div className="font-semibold text-lg">NGN {product?.product_price }</div>
+                <div>{product?.product_description }</div>
                 <div className="flex items-center gap-2 my-5">
-                    <button className=" bg-[#33c336d5] rounded-xl w-[60%] p-2 text-white " onClick={()=>onSubmitForm(product.id)}>Add to favorite </button>
-                    <div className=" w-[50px] h-[50px] rounded-full bg-[#33c336d5] flex justify-center items-center">
+                    <button className=" bg-gradient-to-t from-red-500 to-[coral] rounded-xl w-[60%] p-2 text-white " onClick={()=>onSubmitForm(product?.id)}>Add to favorite </button>
+                    <div className=" w-[50px] h-[50px] rounded-full bg-gradient-to-t from-red-500 to-[coral] flex justify-center items-center">
                     <Link  href={`https://wa.me/${product?.seller_contact.replace(/\s/g,'')}`} ><AiOutlineWhatsApp size={30} color='white'/></Link>
                     </div>
                 </div>
             </div>
-            <div className="flex w-full my-3 gap-2 flex-wrap">
+            <div className="flex w-full my-3 gap-2 flex-wrap p-3">
                 {
-                    product.slug.map((e: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | ReactFragment | ReactPortal | null | undefined, i: Key | null | undefined) => (
-                      
-                            <div key={i} className=" rounded-md p-2 bg-green-500 text-white uppercase">{e}</div>
-                       
+                    product?.slug.map((e: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | ReactFragment | ReactPortal | null | undefined, i: Key | null | undefined) => (     
+                            <div key={i} className=" rounded-md p-2 bg-gradient-to-l from-red-500 to-[coral] text-white uppercase">{e}</div>   
                     ))
 
                 }
             </div>
-            <div className=" grid grid-cols-2 lg:grid-cols-4 gap-2">        
+            <div className=" grid grid-cols-2 lg:grid-cols-4 gap-2 p-3">        
                 {
-                    products.map((e: { id: string | number; images: (string | undefined)[]; product_name: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | ReactFragment | ReactPortal | null | undefined; product_price: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | ReactFragment | ReactPortal | null | undefined; }, i: Key | null | undefined) => (
-                        <div className=" w-full" key={i}>
-                            <Link href={{ pathname: '/product', query: { id: e.id } }} >
-                                <img src={e.images[0]} alt="" className=" w-full" />
-                                <div>{e.product_name}</div>
-                                <div>NGN{ e.product_price}</div>
-                            </Link>
-                           
-                    </div>
-                    ))
+                    products?.map((data: any, i: Key | null | undefined)  => (<PostContainer data={data} key={i}/>))
                }
             </div>
         </div>
@@ -135,13 +125,6 @@ export default function Product(params:{product:any, products:any, session:any})
 export async function getServerSideProps(context: any) {
     const prisma = client
     const session = await getSession(context);
-    if (!session) {
-      return {
-        props: {
-          session: null
-        }, 
-      }
-    }
   
    // console.log(context.query.id)
    

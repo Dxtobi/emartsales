@@ -8,7 +8,7 @@ export default function Switcher() {
 		colorTheme === "light" ? true : false
 	);
 
-	const toggleDarkMode = (checked) => {
+	const toggleDarkMode = (checked: boolean | ((prevState: boolean) => boolean)) => {
 		setTheme(colorTheme);
 		setDarkSide(checked);
 	};

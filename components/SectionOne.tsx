@@ -5,18 +5,18 @@ export default function SectionOne() {
     return (
         <div className="min-h-screen overflow-y-clip -full px-5 flex">
         <motion.div
-          initial={{ y: -100 }}
-          animate={{ y: 100 }}
+          initial={{ y: -300 }}
+          whileInView={{ y: 100,  }}
           exit={{ y: 0 }}
           className="absolute top-0 left-[1rem] right-0 mx-auto ">
           <img src="/images/pnglogo.png" alt="logo" className="h-[70vh]"/>
         </motion.div>
       
         <motion.div
-          initial={{ y: 300 }}
-          animate={{ y: 100 }}
-          exit={{ y: 0 }}
-          className="absolute top-0 left-[3rem] right-0 mx-auto">
+          initial={{ scale: 0 }}
+          whileInView={{ scale: 1 }}
+          exit={{ scale: 0 }}
+          className="absolute top-10 left-[3rem] right-0 mx-auto">
                 <img src="/images/shoe.png" alt="logo" />
                 <div
          

@@ -1,14 +1,16 @@
 import { useState, useEffect } from "react";
 
-export default function useDarkMode() {
-  const [theme, setTheme] = useState(() => {
+type Theme = "light" | "dark";
+
+export default function useDarkMode(): [Theme, (theme: Theme) => void] {
+  const [theme, setTheme] = useState<Theme>(() => {
     if (typeof window !== "undefined") {
-      return localStorage.getItem("theme") || "light";
+      return (localStorage.getItem("theme") as Theme) || "light";
     }
     return "light";
   });
 
-  const colorTheme = theme === "dark" ? "light" : "dark";
+  const colorTheme: Theme = theme === "dark" ? "light" : "dark";
 
   useEffect(() => {
     const root = window.document.documentElement;

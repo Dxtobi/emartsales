@@ -49,16 +49,16 @@ export default function Login() {
 
     function cleanInput(value: string): void {
         const text = value.toLocaleLowerCase().split(" ")
-        console.log(text)
+      //  console.log(text)
         setQuery(text)
 
     }
 
     return (
-        <div className="w-full  ">
-            <div className="w-[90%] p-2 flex items-center justify-between bg-white rounded-md m-auto border-2 border-gray-700">
+        <div className="w-full  py-28">
+            <div className="w-[90%] p-2 flex items-center justify-between bg-white rounded-md m-auto border-2 border-orange-500">
                 <input className="p-1  w-[80%] outline-none" type='text' onChange={(e)=>cleanInput(e.target.value)} placeholder="search" />
-                <button onClick={onSubmitForm} className="w-[15%] p-1 rounded-xl bg-slate-600  flex justify-center items-center "><AiOutlineSearch  color="white" size={30}/></button>
+                <button onClick={onSubmitForm} className="w-[15%] p-1 rounded-xl bg-orange-600  flex justify-center items-center "><AiOutlineSearch  color="white" size={30}/></button>
             </div>
             
             {

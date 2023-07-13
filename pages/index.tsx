@@ -4,7 +4,8 @@ import {
 
   signOut,
 
-  getSession
+  getSession,
+  signIn
 
 } from "next-auth/react";
 
@@ -15,16 +16,16 @@ import HomeContainer from '../components/home/Index';
 import { JSXElementConstructor, Key, ReactElement, ReactFragment, ReactPortal, useState } from 'react';
 
 import Auth from '../components/auth';
-import { BiLoader, BiSend } from 'react-icons/bi';
+import { BiLoader } from 'react-icons/bi';
 import Link from 'next/link';
 import { AiOutlineWhatsApp } from 'react-icons/ai';
 import CarouselElement from '../components/carosel/CaroselElelement';
 import axios, { AxiosRequestConfig } from 'axios';
 import client from '../lib/prismadb';
 import SectionOne from "../components/SectionOne";
-import Product from "./product";
+import { motion } from "framer-motion";
 import PostContainer from "../components/home/PostContainer";
-const np=['Accessories','Perfumes','Fashion','Phones','Electronics', 'Footwears']
+
 
 
 const Home = (params: { session: any; profile: any; products: Array<any>; tags:any }) => {
@@ -33,6 +34,7 @@ const Home = (params: { session: any; profile: any; products: Array<any>; tags:a
   const [prod, setProd] = useState(products)
   const [auth, setAuth] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [selected, setSelected] = useState('');
 
   
   
@@ -40,7 +42,7 @@ const Home = (params: { session: any; profile: any; products: Array<any>; tags:a
   
 const getMoreTab = async (values: any) => {
   setLoading(true)
-  
+  setSelected(values)
  
   try {
      
@@ -60,7 +62,7 @@ const getMoreTab = async (values: any) => {
       if (res.status === 200) {
         setProd(res.data)
         setLoading(false)
-        console.log(res.data)
+       // console.log(res.data)
           //router.reload()
       } else {
           setLoading(false)
@@ -109,12 +111,29 @@ const getMoreTab = async (values: any) => {
     setAuth(!auth)
   }
   return (
-    <div className="flex  flex-col items-center w-full md:w-[60%] lg:w-[50%] ">
+    <div className="flex  flex-col items-center w-full md:w-[70%]  m-auto ">
      <SectionOne/>
-     <section className="my-5 w-full font-bold text-white bg-[coral] p-3">
-          <h1 className="text-2xl my-4">We Deliver Nation Wild</h1>
+      <section 
+         
+          className="my-5 w-full font-bold text-white  bg-gradient-to-t from-red-500 to-[coral] p-3 md:rounded-lg">
+        <h1 className="text-2xl my-4">We Deliver Nation Wild</h1>
+        {session?.user?.role != 'admin' && (
+        <>
+          <button onClick={()=>signIn('google')} className=' bg-[#ffffff] text-gray-600 w-full p-3 my-6 rounded-xl '>
+            SIGN IN  / SIGN UP
+          </button>
+        
+        </>
+        )}
+        <h1 className="text-2xl my-4">Top products</h1>
+        <motion.div className="grid grid-cols-2 md:grid-cols-4" initial={{ scale: 0 }}
+        whileInView={{scale: 1}}>
+       { products.slice(0, 4).map((data, i) => (
+  <PostContainer key={i} data={data} />
+))}
+       </motion.div>
      </section>
-        <div className="p-3">
+        <div className="p-3 m-auto w-full">
 
         <CarouselElement products={[]} />
         </div>
@@ -125,11 +144,11 @@ const getMoreTab = async (values: any) => {
             
             {
               tags.map((e: { tag_name: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | ReactFragment | ReactPortal | null | undefined; }, i: Key | null | undefined) => (
-                <button key={i} onClick={()=>getMoreTab(e.tag_name)} className='p-2   whitespace-nowrap rounded-sm cursor-pointer uppercase'>{e.tag_name}</button>
+                <button key={i} onClick={()=>getMoreTab(e.tag_name)} className={`p-2 whitespace-nowrap rounded-sm cursor-pointer uppercase ${selected === e.tag_name && 'border-b-2 border-b-orange-500 text-orange-600'}  `}>{e.tag_name}</button>
               ))
             }
           </div>
-          <HomeContainer data={products} />
+          <HomeContainer data={prod} />
         
       
       {

@@ -1,11 +1,11 @@
 import Navbar from './navbar'
 import Footer from './footer'
 import {useRouter} from "next/router"
-import OverNav from './overnav';
+
 import { useEffect, useState } from 'react';
-import Sidebar from '../pages/SideBar';
+import Sidebar from './SideBar';
 import { motion } from 'framer-motion';
-import { AiOutlineMenu,  } from 'react-icons/ai';
+import { AiOutlineMenu, AiOutlineClose } from 'react-icons/ai';
 
 
 export default function Layout(params: { [x: string]: any; children: any }) {
@@ -39,7 +39,7 @@ export default function Layout(params: { [x: string]: any; children: any }) {
       
       <main className=' m-auto  '>{children}</main>
                 <div className="md:hidden block fixed top-0 left-0 w-full z-50">
-                    <button onClick={() => setShowMenuMobile(!showMenuMobile)} className='fixed right-2 top-3 z-40 '>{showMenuMobile ? 'XX' : <AiOutlineMenu size={30} />}</button>
+                    <button onClick={() => setShowMenuMobile(!showMenuMobile)} className='fixed right-2 top-3 z-40 '>{showMenuMobile ? <AiOutlineClose size={30}/> : <AiOutlineMenu size={30} />}</button>
                     {showMenuMobile && <div className=' w-full'>
                         <motion.div
                             initial={{ x: -100 }}
