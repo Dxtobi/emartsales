@@ -112,6 +112,7 @@ const getMoreTab = async (values: any) => {
   }
   return (
     <div className="flex  flex-col items-center w-full md:w-[70%]  m-auto ">
+      
      <SectionOne/>
       <section 
          
