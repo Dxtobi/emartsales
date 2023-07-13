@@ -1,18 +1,18 @@
 
 import Head from 'next/head';
-import Image from 'next/image';
+import Script from 'next/script';
 import Link from 'next/link';
 
 
 export default function Navbar(params: { [x: string]: any; }) {
   const { session, ...others } = params
- 
+
 
 
   //console.log('session:::', others)
-    return (
-      <>
-             <Head>
+  return (
+    <>
+      <Head>
         <title>WeSales</title>
         <meta name="description" content="Discover a wide range of high-quality products at our e-commerce store. Shop for the latest fashion trends, home decor, electronics, and more. Enjoy convenient shopping with fast shipping and secure payment options. Find great deals and discounts on top brands. Transform your shopping experience with our user-friendly website and exceptional customer service. Start exploring our diverse collection today and elevate your lifestyle with our curated selection of products.." />
         <meta property="og:title" content="My Page" />
@@ -39,23 +39,24 @@ export default function Navbar(params: { [x: string]: any; }) {
 
         {/* Additional SEO tags */}
         <meta name="canonical" content="https://emartsales.vercel.app/" />
-          <meta name="google-site-verification" content="your-google-site-verification-code" />
-          <script async src="https://www.googletagmanager.com/gtag/js?id=G-WXB5Y370JX"></script>
-        <script dangerouslySetInnerHTML={{ __html: `
-  
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-WXB5Y370JX');
-` }} />
+        {/* <meta name="google-site-verification" content="your-google-site-verification-code" /> */}
+        <Script async src="https://www.googletagmanager.com/gtag/js?id=G-WXB5Y370JX"></Script>
+        <Script>
+          {
+            `window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-WXB5Y370JX');`
+          }
+        </Script>
       </Head>
-            
-            <div className='z-50 flex items-center justify-between p-5 absolute top-0 right-0 w-full   header_div bg-[#ffffff00]'>
-                <Link href='/' className='brand '>
-                    <span className='custom-text'>WeSales</span>
-          </Link>
-          </div>
-                
-      </>
-    )
-  }
+
+      <div className='z-50 flex items-center justify-between p-5 absolute top-0 right-0 w-full   header_div bg-[#ffffff00]'>
+        <Link href='/' className='brand '>
+          <span className='custom-text'>WeSales</span>
+        </Link>
+      </div>
+
+    </>
+  )
+}

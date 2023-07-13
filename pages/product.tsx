@@ -11,6 +11,7 @@ import Carousel from "nuka-carousel";
 import { JSXElementConstructor, Key, ReactElement, ReactFragment, ReactPortal } from "react";
 import client from "../lib/prismadb";
 import PostContainer from "../components/home/PostContainer";
+import Head from "next/head";
 
 
 export default function Product(params:{product:any, products:any, session:any}) {
@@ -71,6 +72,25 @@ export default function Product(params:{product:any, products:any, session:any})
    
     return (
         <div className="w-full   py-20">
+            <Head>
+        <title>
+          iPhone 12 XS Max For Sale in Colorado - Big Discounts | Apple
+        </title>
+        <meta
+          name={product?.product_description }
+          content={product?.product_description }
+          key={product?.product_description }
+                />
+        <meta name="description" content={product?.product_description } />
+        <meta property="og:title" content={product?.product_name} />
+        <meta property="og:description" content={product?.product_description } />
+        <meta property="og:image" content={product?.images[0]} />
+    
+        <meta name="keywords" content="Online shopping, E-commerce, Fashion, Clothing, Apparel, Accessories, Shoes, Electronics, Gadgets, Home decor, Furniture, Beauty products, Health and wellness, Sports and fitness, Jewelry, Watches, Baby products, Toys and games, Books, Gifts and souvenirs, Sustainable products, Organic products, Discounted items, Sale, Best deals, Exclusive offers, Free shipping, Customer reviews, Secure payments, Return policy, cloths, trending" />
+        <meta name="author" content="joseph akanbi" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="robots" content="index, follow" />
+      </Head>
              <Carousel
             renderCenterLeftControls={({ previousDisabled, previousSlide }) => (
                 <button className='w-[100px] h-[300px]' onClick={previousSlide} disabled={previousDisabled}>
@@ -94,9 +114,9 @@ export default function Product(params:{product:any, products:any, session:any})
             }
             </Carousel>
             <div className="p-3">
-                <div className=" uppercase font-bold mt-3 text-lg">{product?.product_name}</div>
-                <div className="font-semibold text-lg">NGN {product?.product_price }</div>
-                <div>{product?.product_description }</div>
+                <h1 className=" uppercase font-bold mt-3 text-lg">{product?.product_name}</h1>
+                <h2 className="font-semibold text-lg">NGN {product?.product_price }</h2>
+                <p>{product?.product_description }</p>
                 <div className="flex items-center gap-2 my-5">
                     <button className=" bg-gradient-to-t from-red-500 to-[coral] rounded-xl w-[60%] p-2 text-white " onClick={()=>onSubmitForm(product?.id)}>Add to favorite </button>
                     <div className=" w-[50px] h-[50px] rounded-full bg-gradient-to-t from-red-500 to-[coral] flex justify-center items-center">

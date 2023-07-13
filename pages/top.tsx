@@ -13,20 +13,20 @@ import client from "../lib/prismadb";
 
 export default function Profile(params: { products: any; idType: number; session:any}) {
 
-  console.log(params)
+
   if (!params.session) {
-    return <div>You not logged in</div>
+    return <div className="flex min-h-[70vh] flex-col items-center  p-3 justify-center  gap-3   py-28">You not logged in</div>
   }
  const { products} = params
-  console.log(params)
+
 
     return (
-      <div className="flex min-h-[70vh] flex-col items-center  p-0  gap-3">
+      <div className="flex min-h-[70vh] flex-col items-center  p-3  gap-3   py-28">
        
         {
           products.map((e: { images: (string | undefined)[]; product_name: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | ReactFragment | ReactPortal | null | undefined; product_price: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | ReactFragment | ReactPortal | null | undefined; likes: string | any[]; }, i: Key | null | undefined) => (
             <div key={i} className="w-full flex items-start  gap-2 p-2 bg-[#ffff]">
-              <img src={e.images[0]} alt="" className="w-[30%]" />
+              <img src={e.images[0]} alt="" className="w-[30%] rounded-lg" />
               <div className="">
                 <div>
                 {e.product_name}
@@ -36,7 +36,7 @@ export default function Profile(params: { products: any; idType: number; session
                 </div>
                 <div className=" flex gap-2 items-center">
                   <AiFillHeart size={29} /> 
-                  <div> {e.likes.length}k</div>
+                  <div> {e.likes.length}0</div>
                 </div>
               </div>
             </div>
