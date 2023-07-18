@@ -127,7 +127,7 @@ const getMoreTab = async (values: any) => {
         </>
         )}
         <h1 className="text-2xl my-4">Top products</h1>
-        <motion.div className="grid grid-cols-2 md:grid-cols-4" initial={{ scale: 0 }}
+        <motion.div className="grid grid-cols-2 md:grid-cols-4 gap-2" initial={{ scale: 0 }}
         whileInView={{scale: 1}}>
        { products.slice(0, 4).map((data, i) => (
   <PostContainer key={i} data={data} />
@@ -141,7 +141,7 @@ const getMoreTab = async (values: any) => {
           <Link href='https://wa.me/message/P67PWTYW2YO5F1' className='fixed right-8 bottom-20 bg-[#25b05b33] lg:bg-[#25b05a] text-white flex justify-center items-center w-16 h-16 rounded-full header_div'><AiOutlineWhatsApp size={34}/></Link>
           
           
-          <div className='flex gap-3 items-center my-4 overflow-x-scroll w-full  p-3'>
+          <div className='flex gap-3 items-center my-4 overflow-x-scroll w-full no-scrollbar  p-3'>
             
             {
               tags.map((e: { tag_name: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | ReactFragment | ReactPortal | null | undefined; }, i: Key | null | undefined) => (
